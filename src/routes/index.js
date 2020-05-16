@@ -1,5 +1,5 @@
 import React,{lazy} from 'react'
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
 import BlankLayout from "../layouts/BlankLayout";
 import {renderRoutes} from '../utils'
