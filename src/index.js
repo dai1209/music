@@ -1,17 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDom from 'react-dom'
+import { Provider } from "react-redux";
+import { GlobalStyle } from "./style";
+import { IconStyle } from "./assets/iconfont/iconfont";
+import store from "./store/index";
+import AppRouter from "./routes/index.js";
+import { HashRouter } from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import "./fix.css";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+function App() {
+  return (
+    <Provider store={store}>
+      <HashRouter>
+        <GlobalStyle></GlobalStyle>
+        <IconStyle></IconStyle>
+        <AppRouter />
+      </HashRouter>
+    </Provider>
+  );
+}
+
+
+
+ReactDom.render(<App />,document.getElementById('root'))
