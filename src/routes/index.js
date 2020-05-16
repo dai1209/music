@@ -1,4 +1,5 @@
-import {lazy} from 'react'
+import React,{lazy} from 'react'
+import { HashRouter as Router } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
 import BlankLayout from "../layouts/BlankLayout";
 import {renderRoutes} from '../utils'
@@ -67,5 +68,5 @@ const config = [
 ];
 
 
-const AppRouter = ()=>renderRoutes(config)
+const AppRouter = ()=><Router>{renderRoutes(config)}</Router>
 export default AppRouter
