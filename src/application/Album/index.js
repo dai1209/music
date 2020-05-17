@@ -1,5 +1,4 @@
 import React, { memo, useState, useEffect,useRef,useCallback } from "react";
-
 import {useParams} from 'react-router-dom'
 import { CSSTransition } from "react-transition-group";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +10,6 @@ import AlbumDetail from '../../components/album-detail/index';
 import { HEADER_HEIGHT } from './../../apis/config';
 import MusicNote from '../../baseUI/music-note/index';
 import { isEmptyObject } from '../../utils';
-
 import Scroll from '../../baseUI/scroll/index';
 import style from "../../assets/global-style";
 import {changeEnterLoading,getAlbumList,changePullUpLoading} from './store/actions'

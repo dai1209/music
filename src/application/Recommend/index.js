@@ -7,7 +7,7 @@ import Scroll from '../../baseUI/scroll/index';
 import { Content } from './style';
 import { EnterLoading } from './../Singers/style';
 import Loading from '../../baseUI/loading-v2/index';
-import {getBannerList,getRecommendList} from './store/action'
+import {getBannerList,getRecommendList} from './store/actions'
 
 
 function Recommend({children}){
