@@ -19,7 +19,6 @@ const SongsList = React.forwardRef((props, refs)=> {
 
   const { musicAnimation } = props;
   const dispatch = useDispatch()
-  // const { changePlayListDispatch, changeCurrentIndexDispatch, changeSequecePlayListDispatch } = props;
   const totalCount = songs.length;
 
   useEffect(() => {
@@ -58,17 +57,14 @@ const SongsList = React.forwardRef((props, refs)=> {
     return res;
   };
 
-  const collect = (count) => {
+  const Collect = React.memo(({count}) => {
     return  (
       <div className="add_list">
         <i className="iconfont">&#xe62d;</i>
         <span>收藏({Math.floor(count/1000)/10}万)</span>
       </div>
-      // <div className="isCollected">
-      //   <span>已收藏({Math.floor(count/1000)/10}万)</span>
-      // </div>
     )
-  };
+  })
   return (
     <SongList ref={refs} showBackground={props.showBackground}>
       <div className="first_line">
@@ -76,7 +72,7 @@ const SongsList = React.forwardRef((props, refs)=> {
           <i className="iconfont">&#xe6e3;</i>
           <span>播放全部 <span className="sum">(共{totalCount}首)</span></span>
         </div>
-        { showCollect ? collect(collectCount) : null}
+        { showCollect ? <Collect count={collectCount} /> : null}
       </div>
       <SongItem>
         { songList(songs) }

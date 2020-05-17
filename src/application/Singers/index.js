@@ -13,7 +13,7 @@ import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeEnt
 import Scroll from "../../baseUI/scroll/index";
 import  LazyLoad, {forceCheck} from 'react-lazyload';
 import Loading from '../../baseUI/loading/index';
-import { renderRoutes } from '../../utils';
+// import { renderRoutes } from '../../utils';
 
 function Singers(props){
   const scrollRef = useRef(null)
@@ -131,7 +131,7 @@ function Singers(props){
       </ListContainer>
       {/* 入场加载动画 */}
       { enterLoading ? <EnterLoading><Loading></Loading></EnterLoading> : null}
-      { renderRoutes(props.route) }
+      { props.children }
     </div>
   )
 }

@@ -1,11 +1,14 @@
 import React from "react";
 import {useHistory,NavLink} from 'react-router-dom'
-import { renderRoutes } from "../utils";
+// import { renderRoutes } from "../utils";
 import { Top, Tab, TabItem } from "./HomeLayout.style";
 import Player from "../application/Player/index";
 
-function Home({route}) {
+function Home({route,children}) {
   // const { route } = props;
+  // console.log(renderRoutes(route));
+  console.log(children);
+  
   const history = useHistory()
   return (
     <div>
@@ -41,7 +44,7 @@ function Home({route}) {
           </TabItem>
         </NavLink>
       </Tab>
-      {renderRoutes(route)}
+      {children}
       <Player></Player>
     </div>
   );
