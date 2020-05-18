@@ -20,29 +20,6 @@ export const getBannerList = () => ({
   type: actionTypes.GET_BANNER_LIST,
 })
 
-
-
-// {
-//   // return (dispatch) => {
-//   //   getBannerRequest().then(data => {
-//   //     const action = changeBannerList(data.banners);
-//   //     dispatch(action);
-//   //   }).catch(() => {
-//   //     console.log("轮播图数据传输错误");
-//   //   }) 
-//   // }
-// };
-
 export const getRecommendList = () => ({
   type: actionTypes.GET_RECOMMEND_LIST
 })
-//  {
-//   return (dispatch) => {
-//     getRecommendListRequest().then(data => {
-//       dispatch(changeRecommendList(data.result));
-//       dispatch(changeEnterLoading(false));
-//     }).catch(() => {
-//       console.log("推荐歌单数据传输错误");
-//     });
-//   }
-// };

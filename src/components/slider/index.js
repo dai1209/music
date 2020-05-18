@@ -5,7 +5,6 @@ import 'swiper/css/swiper.min.css'
 function Slider(props) {
   const [sliderSwiper, setSliderSwiper] = useState(null);
   const { bannerList } = props;
-  console.log(bannerList);
   
   useEffect(() => {
     if(bannerList.length && !sliderSwiper){

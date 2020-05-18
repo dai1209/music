@@ -9,8 +9,6 @@ export const getRecommendListRequest = () => {
 };
 
 export const getHotSingerListRequest = count => {
-  console.log('12');
-  
   return request(`/top/artists`,{offset:count});
 };
 

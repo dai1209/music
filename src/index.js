@@ -5,6 +5,7 @@ import { GlobalStyle } from "./style";
 import { IconStyle } from "./assets/iconfont/iconfont";
 import store from "./store/index";
 import AppRouter from "./routes/index.js";
+import * as serviceWorker from './serviceWorker'
 
 
 import "./fix.css";
@@ -23,3 +24,9 @@ function App() {
 
 
 ReactDom.render(<App />,document.getElementById('root'))
+
+if ('production' === process.env.NODE_ENV){
+  serviceWorker.register()
+}else{
+  serviceWorker.unregister()
+}

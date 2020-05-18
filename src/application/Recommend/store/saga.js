@@ -2,7 +2,7 @@ import {put,call,takeEvery} from 'redux-saga/effects'
 
 import { GET_BANNER_LIST, GET_RECOMMEND_LIST}from './constants'
 
-import {changeBannerList,changeRecommendList,changeEnterLoading} from './action'
+import {changeBannerList,changeRecommendList,changeEnterLoading} from './actions'
 
 import {getBannerRequest,getRecommendListRequest} from '../../../apis'
 

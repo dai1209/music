@@ -1,13 +1,9 @@
 import React from "react";
 import {useHistory,NavLink} from 'react-router-dom'
-// import { renderRoutes } from "../utils";
 import { Top, Tab, TabItem } from "./HomeLayout.style";
 import Player from "../application/Player/index";
 
-function Home({route,children}) {
-  // const { route } = props;
-  // console.log(renderRoutes(route));
-  console.log(children);
+function Home({children}) {
   
   const history = useHistory()
   return (

@@ -370,7 +370,7 @@ export const trimPhone = val => val.replace(/(^\s+)|(\s+$)|\s+/g, "");
 
 
 export function renderRoutes(routes){
-  // console.log(routes);
+
   
   return (
     <Switch>
@@ -378,7 +378,7 @@ export function renderRoutes(routes){
         if (route.redirect){
           return (
             <Redirect
-              key = {route.key || route.path}
+              key = {route.path}
               exact = {route.exact}
               from = {route.path}
               to = {route.redirect}
@@ -388,14 +388,14 @@ export function renderRoutes(routes){
 
         return (
           <Route 
-            key={route.key || route.path}
+            key={route.path}
             path = {route.path}
             render = {(props)=>{
               const renderChildren = route.routes && renderRoutes(route.routes)
               if (route.component){
                 return (
                   <Suspense fallback={<div>Loading......</div>}>
-                    <route.component {...props} route={route.routes} >{renderChildren}</route.component>
+                    <route.component {...props} >{renderChildren}</route.component>
                   </Suspense>
                 )
               }

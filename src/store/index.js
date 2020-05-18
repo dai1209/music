@@ -16,7 +16,7 @@ const store = createStore(
 )
 
 store.runSaga = sagaMiddleware.run
-const ROOTSAGA = sagas
-ROOTSAGA.map(saga=>store.runSaga(saga))
+
+sagas.map(saga=>store.runSaga(saga))
 
 export default store

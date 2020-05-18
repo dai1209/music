@@ -13,7 +13,6 @@ import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeEnt
 import Scroll from "../../baseUI/scroll/index";
 import  LazyLoad, {forceCheck} from 'react-lazyload';
 import Loading from '../../baseUI/loading/index';
-// import { renderRoutes } from '../../utils';
 
 function Singers(props){
   const scrollRef = useRef(null)

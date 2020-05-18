@@ -2,12 +2,10 @@ import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changePlayingState,
-  // changeShowPlayList,
   changeCurrentIndex,
   changeCurrentSong,
   changePlayList,
   changePlayMode,
-  // changeFullScreen,
   changeSpeed
 } from "./store/actions"
 import { isEmptyObject, shuffle, findIndex, getSongUrl } from "../../utils";
@@ -20,7 +18,7 @@ import { playMode } from "./../../utils";
 import { getLyricRequest } from "./../../apis";
 
 
-function Player(props) {
+function Player() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentPlayingLyric, setPlayingLyric] = useState("");
@@ -31,7 +29,6 @@ function Player(props) {
   const fullScreen =useSelector(({player})=>player.fullScreen)
   const playing = useSelector(({player})=>player.playing)
   const currentSong = useSelector(({player})=>player.currentSong)
-  // const showPlayList = useSelector(({player})=>player.showPlayList)
   const mode = useSelector(({player})=>player.mode)
   const speed = useSelector(({player})=>player.speed)
   const currentIndex = useSelector(({player})=>player.currentIndex)
