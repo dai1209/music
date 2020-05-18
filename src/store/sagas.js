@@ -8,11 +8,14 @@ import {saga as singersSaga} from '../application/Singers/store'
 
 import {saga as rankSaga} from '../application/Rank/store'
 
+import {saga as searchSaga} from '../application/Search/store' 
+
 const rootSaga = [
   albumSaga,
   recommendSaga,
   playerSaga,
   singersSaga,
-  rankSaga
+  rankSaga,
+  searchSaga
 ]
 export default rootSaga

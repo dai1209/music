@@ -1,17 +1,17 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import LazyLoad, {forceCheck} from 'react-lazyload';
+import { CSSTransition } from 'react-transition-group';
+
 import SearchBox from './../../baseUI/search-box/index';
 import Scroll from './../../baseUI/scroll/index';
 import { Container, ShortcutWrapper, HotKey } from './style';
-import { connect } from 'react-redux';
-import { getHotKeyWords, changeEnterLoading, getSuggestList } from './store/actionCreators';
+import { getHotKeyWords, changeEnterLoading, getSuggestList,getSongDetail } from './store/actions';
 import { List, ListItem, EnterLoading } from './../Singers/style';
-import LazyLoad, {forceCheck} from 'react-lazyload';
-import { CSSTransition } from 'react-transition-group';
 import Loading from './../../baseUI/loading/index';
 import MusicalNote from '../../baseUI/music-note';
 import { SongItem } from '../Album/style';
-import { getName } from '../../api/utils';
-import { getSongDetail } from './../Player/store/actionCreators';
+import { getName } from '../../utils';
 
 
 const Search = (props) => {
@@ -19,30 +19,18 @@ const Search = (props) => {
   const [show, setShow] = useState(false);
   const musicNoteRef = useRef();
 
-  const {
-    hotList, 
-    enterLoading, 
-    suggestList: immutableSuggestList, 
-    songsCount, 
-    songsList: immutableSongsList
-  } = props;
-
-  const suggestList = immutableSuggestList.toJS();
-  const songsList = immutableSongsList.toJS();
-
-  const {
-    getHotKeyWordsDispatch,
-    changeEnterLoadingDispatch,
-    getSuggestListDispatch,
-    getSongDetailDispatch
-  } = props;
+  const hotList = useSelector(({search})=>search.hotList)
+  const enterLoading = useSelector(({search})=>search.enterLoading)
+  const suggestList = useSelector(({search})=>search.suggestList)
+  const songsCount = useSelector(({player})=>player.playList).length
+  const songsList = useSelector(({search})=>search.songsList)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setShow(true);
-    if(!hotList.size)
-      getHotKeyWordsDispatch();
+    hotList.length || dispatch(getHotKeyWords())
       // eslint-disable-next-line
-  }, []);
+  }, [setShow,hotList,dispatch]);
 
   const renderHotKey = () => {
     let list = hotList ? hotList.toJS(): [];
@@ -82,8 +70,8 @@ const Search = (props) => {
   const handleQuery = (q) => {
     setQuery(q);
     if(!q) return;
-    changeEnterLoadingDispatch(true);
-    getSuggestListDispatch(q);
+    dispatch(changeEnterLoading(true))
+    dispatch(getSuggestList(q))
   }
 
   const renderSingers = () => {
@@ -135,7 +123,7 @@ const Search = (props) => {
   };
 
   const selectItem = (e, id) => {
-    getSongDetailDispatch(id);
+    dispatch(getSongDetail(id))
     musicNoteRef.current.startAnimation({x:e.nativeEvent.clientX, y:e.nativeEvent.clientY});
   }
   
@@ -212,34 +200,4 @@ const Search = (props) => {
     </CSSTransition>
   )
 }
-
-
-// 映射Redux全局的state到组件的props上
-const mapStateToProps = (state) => ({
-  hotList: state.getIn(['search', 'hotList']),
-  enterLoading: state.getIn(['search', 'enterLoading']),
-  suggestList: state.getIn(['search', 'suggestList']),
-  songsCount: state.getIn(['player', 'playList']).size,
-  songsList: state.getIn(['search', 'songsList'])
-});
-
-// 映射dispatch到props上
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getHotKeyWordsDispatch() {
-      dispatch(getHotKeyWords());
-    },
-    changeEnterLoadingDispatch(data) {
-      dispatch(changeEnterLoading(data))
-    },
-    getSuggestListDispatch(data) {
-      dispatch(getSuggestList(data));
-    },
-    getSongDetailDispatch(id) {
-      dispatch(getSongDetail(id));
-    }
-  }
-};
-
-// 将ui组件包装成容器组件
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Search));
+export default React.memo(Search)
