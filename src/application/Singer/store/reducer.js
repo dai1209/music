@@ -16,6 +16,6 @@ export default (state = defaultState, action) => {
     case actionTypes.CHANGE_ENTER_LOADING:
       return state.set('loading', action.data);
     default:
-      return state;
+      return
   }
 }

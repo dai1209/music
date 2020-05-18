@@ -1,5 +1,6 @@
-import * as actionTypes from './constants';
 import produce from 'immer';
+import * as actionTypes from './constants';
+
 
 const initialState = {
   category: "",
@@ -35,6 +36,6 @@ export default produce((state = initialState, {type,payload}) => {
       state.pullDownLoading = payload
       break
     default:
-      return state;
+      return
   }
 })

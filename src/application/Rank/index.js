@@ -1,6 +1,6 @@
 import React, { memo,useEffect, useCallback } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { getRankList } from './store/index'
+import { getRankList } from './store/actions'
 import Loading from '../../baseUI/loading';
 import {
   List, 
@@ -10,7 +10,7 @@ import {
 } from './style';
 import Scroll from '../../baseUI/scroll/index';
 import { EnterLoading } from './../Singers/style';
-import { filterIndex } from '../../api/utils';
+import { filterIndex } from '../../utils';
 
 const RenderSongList = memo(({list}) => {
   return list.length ? (

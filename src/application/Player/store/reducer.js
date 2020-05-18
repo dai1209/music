@@ -89,6 +89,6 @@ export default produce((state = initialState, {type,payload}) => {
       state.speed = payload
       break
     default:
-      return state;
+      return
   }
 })

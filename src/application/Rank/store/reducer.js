@@ -3,7 +3,7 @@ import {CHANGE_RANK_LIST, CHANGE_LOADING } from './constants'
 
 const initialState = {
   rankList: [],
-  loading: true
+  loading: false
 }
 
 export default produce((state = initialState, {type,payload}) => {
