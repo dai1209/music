@@ -3,12 +3,11 @@ import { Container } from "./style";
 import Header from "../../baseUI/header/index";
 import { ImgWrapper, CollectButton, SongListWrapper, BgLayer } from "./style";
 import Scroll from "../../baseUI/scroll/index";
-import { HEADER_HEIGHT } from "./../../api/config";
-import { getSingerInfo } from "./store/actionCreators";
-import { connect } from "react-redux";
+import { HEADER_HEIGHT } from "./../../apis/config";
+import { getSingerInfo } from "./store/actions";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "./../../baseUI/loading/index";
 import { EnterLoading } from "../Singers/style";
-import { changeEnterLoading } from "./store/actionCreators";
 import { CSSTransition } from "react-transition-group";
 import SongsList from "../SongList/";
 import MusicNote from "../../baseUI/music-note/index";
@@ -18,18 +17,14 @@ function Singer(props) {
   const [showStatus, setShowStatus] = useState(true);
 
   const OFFSET = 5;
+  const artist = useSelector(({singerInfo})=>singerInfo.artist)
+  const songs = useSelector(({singerInfo})=>singerInfo.songsOfArtist)
+  const loading = useSelector(({singerInfo})=>singerInfo.loading)
+  const songsCount = useSelector(({player})=>player.playList).length
 
-  const { 
-    artist: immutableArtist, 
-    songs: immutableSongs, 
-    loading,
-    songsCount
-  } = props;
 
-  const { getSingerDataDispatch } = props;
+  const dispatch = useDispatch()
 
-  const artist = immutableArtist.toJS();
-  const songs = immutableSongs.toJS();
 
   const collectButton = useRef();
   const imageWrapper = useRef();
@@ -41,7 +36,7 @@ function Singer(props) {
 
   useEffect(() => {
     const id = props.match.params.id;
-    getSingerDataDispatch(id);
+    dispatch(getSingerInfo(id))
     let h = imageWrapper.current.offsetHeight;
     initialHeight.current = h;
     songScrollWrapper.current.style.top = `${h - OFFSET}px`;
@@ -142,25 +137,4 @@ function Singer(props) {
   );
 }
 
-// 映射Redux全局的state到组件的props上
-const mapStateToProps = state => ({
-  artist: state.getIn(["singerInfo", "artist"]),
-  songs: state.getIn(["singerInfo", "songsOfArtist"]),
-  loading: state.getIn(["singerInfo", "loading"]),
-  songsCount: state.getIn(["player", "playList"]).size
-});
-// 映射dispatch到props上
-const mapDispatchToProps = dispatch => {
-  return {
-    getSingerDataDispatch(id) {
-      dispatch(changeEnterLoading(true));
-      dispatch(getSingerInfo(id));
-    }
-  };
-};
-
-// 将ui组件包装成容器组件
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(React.memo(Singer));
+export default React.memo(Singer)

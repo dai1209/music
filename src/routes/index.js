@@ -34,13 +34,13 @@ const config = [
             routes: [
               {
                 path: "/singers/:id",
-                component: lazy(() => import("../application/Singers/"))
+                component: lazy(() => import("../application/Singer/"))
               }
             ]
           },
           {
             path: "/rank/",
-            // component: lazy(() => import("../application/Rank/")),
+            component: lazy(() => import("../application/Rank/")),
             key: "rank",
             routes: [
               {
@@ -59,7 +59,7 @@ const config = [
             path: "/search",
             exact: true,
             key: "search",
-            // component: lazy(() => import("./../application/Search/"))
+            component: lazy(() => import("./../application/Search/"))
           }
         ]
       }

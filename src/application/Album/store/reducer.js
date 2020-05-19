@@ -30,6 +30,6 @@ export default produce((state = initialState, {
       state.pullUpLoading = false
       break
     default:
-      return
+      return state
   }
 })

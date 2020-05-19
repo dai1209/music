@@ -15,6 +15,6 @@ export default produce((state = initialState, {type,payload}) => {
       state.loading = payload
       break
     default:
-      return
+      return state
   }
 })

@@ -36,6 +36,6 @@ export default produce((state = initialState, {type,payload}) => {
       state.pullDownLoading = payload
       break
     default:
-      return
+      return state
   }
 })

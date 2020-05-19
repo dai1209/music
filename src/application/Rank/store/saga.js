@@ -1,5 +1,5 @@
 import {put, call, takeEvery} from 'redux-saga/effects'
-import { getRankListRequest } from '../../../api/request';
+import { getRankListRequest } from '../../../apis';
 import {GET_RANK_LIST} from './constants'
 import {changeRankList, changeLoading} from './actions'
 

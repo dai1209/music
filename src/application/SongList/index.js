@@ -5,15 +5,23 @@ import { ONE_PAGE_COUNT } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { changePlayList, changeCurrentIndex, changeSequecePlayList } from './../../application/Player/store/actions';
 
+const Collect = React.memo(({count}) => {
+  return  (
+    <div className="add_list">
+      <i className="iconfont">&#xe62d;</i>
+      <span>收藏({Math.floor(count/1000)/10}万)</span>
+    </div>
+  )
+})
+
+
+
 const SongsList = React.forwardRef((props, refs)=> {
 
   const [startIndex, setStartIndex] = useState(0);
 
   
-//  const fullScreen = useSelector(({player})=>player.fullScreen)
-//  const playing = useSelector(({player})=>player.playing)
-//  const currentSong = useSelector(({player})=>player.currentSong)
-//  const scrollY = useSelector(({album})=>album.scrollY)
+
 
   const { songs, collectCount, showCollect,loading=false, usePageSplit } = props;
 
@@ -57,14 +65,7 @@ const SongsList = React.forwardRef((props, refs)=> {
     return res;
   };
 
-  const Collect = React.memo(({count}) => {
-    return  (
-      <div className="add_list">
-        <i className="iconfont">&#xe62d;</i>
-        <span>收藏({Math.floor(count/1000)/10}万)</span>
-      </div>
-    )
-  })
+  
   return (
     <SongList ref={refs} showBackground={props.showBackground}>
       <div className="first_line">
@@ -85,5 +86,4 @@ const SongsList = React.forwardRef((props, refs)=> {
 
 
 
-// 将ui组件包装成容器组件
 export default React.memo(SongsList)

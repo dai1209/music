@@ -32,30 +32,9 @@ export const changeEnterLoading = (payload) => ({
 export const getHotKeyWords = () => ({
   type: GET_HOT_KEYWORDS
 })
-// {
-//   return dispatch => {
-//     getHotKeyWordsRequest().then(data => {
-//       let list = data.result.hots;
-//       dispatch(changeHotKeyWords(list));
-//     })
-//   }
-// };
+
 export const getSuggestList = (payload) => ({
   type: GET_SUGGEST_LIST,
   payload
 })
-// {
-//   return dispatch => {
-//     getSuggestListRequest(query).then(data => {
-//       if(!data)return;
-//       let res = data.result || [];
-//       dispatch(changeSuggestList(res));
-//     })
-//     getResultSongsListRequest(query).then(data => {
-//       if(!data)return;
-//       let res = data.result.songs || [];
-//       dispatch(changeResultSongs(res));
-//       dispatch(changeEnterLoading(false));
-//     })
-//   }
-// };
+

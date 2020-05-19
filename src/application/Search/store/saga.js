@@ -20,7 +20,7 @@ import {
   getHotKeyWordsRequest,
   getSuggestListRequest,
   getResultSongsListRequest
-} from './../../../api/request';
+} from './../../../apis';
 
 
 function* fetchHotKeyWords(){
