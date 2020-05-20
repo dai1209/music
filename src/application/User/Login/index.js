@@ -1,31 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Container, LogoImg, LogoContainer, LoginContainer } from "./style";
-import { withRouter } from "react-router-dom";
-import * as actionCreators from "./store/actionCreators";
+import {saveSentStatus,loginByVcode,sentVcode} from "./store/actions";
 import LoginForm from "./LoginForm";
 import PhoneForm from "./PhoneForm";
 
-import { CSSTransition } from "react-transition-group";
-import { connect } from "react-redux";
 
-const Login = props => {
-  const {
-    LoginByVcodeDispatch,
-    sentVcodeDispatch,
-    sentStatus,
-    loginStatus,
-    changeSentStatusDispatch,
-    history
-  } = props;
+const Login = () => {
+
+  
   const [inPhone, setInPhone] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const checkBoxRef = useRef();
 
+  const dispatch = useDispatch()
+  // const userInfo = useSelector(({user})=>user.userInfo)
+  const sentStatus = useSelector(({user})=>user.sentStatus)
+  const loginStatus = useSelector(({user})=>user.loginStatus)
+  const history = useHistory()
   useEffect(() => {
     if (loginStatus) {
       history.push("/recommend");
     }
-  }, [loginStatus, history]);
+  }, [loginStatus,history]);
 
   const jumpToIndex = () => {
     history.push("/recommend");
@@ -71,14 +71,14 @@ const Login = props => {
         timeout={500}
         classNames="push-in"
         unmountOnExit
-        onExited={() => changeSentStatusDispatch()}
+        onExited={() => dispatch(saveSentStatus(false))}
       >
         <LoginContainer>
           <PhoneForm
             // loginByPhone={LoginByPhoneDispatch}
-            loginByVcode={LoginByVcodeDispatch}
+            loginByVcode={(phone,vcode)=>dispatch(loginByVcode(phone, vcode))}
             onClickBack={onPhoneBack}
-            sentVcode={sentVcodeDispatch}
+            sentVcode={(phone)=>dispatch(sentVcode(phone))}
             sentStatus={sentStatus}
           />
         </LoginContainer>
@@ -87,31 +87,5 @@ const Login = props => {
   );
 };
 
-// 映射Redux全局的state到组件的props上
-const mapStateToProps = state => ({
-  userInfo: state.getIn(["user", "userInfo"]),
-  sentStatus: state.getIn(["user", "sentStatus"]),
-  loginStatus: state.getIn(["user", "loginStatus"])
-});
-// 映射dispatch到props上
-const mapDispatchToProps = dispatch => {
-  return {
-    LoginByPhoneDispatch(phone, password) {
-      dispatch(actionCreators.loginByPhone(phone, password));
-    },
-    LoginByVcodeDispatch(phone, vcode) {
-      dispatch(actionCreators.loginByVcode(phone, vcode));
-    },
-    sentVcodeDispatch(phone) {
-      dispatch(actionCreators.sentVcode(phone));
-    },
-    changeSentStatusDispatch() {
-      dispatch(actionCreators.saveSentStatus(false));
-    }
-  };
-};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(React.memo(withRouter(Login)));
+export default React.memo(Login)

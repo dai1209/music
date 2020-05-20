@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Header, Container } from "./style";
-import { trimPhone } from "../../../../api/utils";
+import { trimPhone } from "../../../../utils";
 import StepOne from "./step-one";
 import StepTwo from "./step-two";
 

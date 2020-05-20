@@ -1,21 +1,24 @@
 import * as actionTypes from "./constants";
-import { fromJS } from "immutable";
+import produce from "immer";
 
-const defaultState = fromJS({
+const initialState = {
   userInfo: {},
   sentStatus: false,
   loginStatus: false
-});
+}
 
-export default (state = defaultState, action) => {
-  switch (action.type) {
+export default produce((state = initialState, {type,payload}) => {
+  switch (type) {
     case actionTypes.CHANGE_USER_INFO:
-      return state.set("userInfo", action.data);
+      state.userInfo = payload
+      break
     case actionTypes.CHANGE_SENT_STATUS:
-      return state.set("sentStatus", action.data);
+      state.sentStatus = payload
+      break
     case actionTypes.CHANGE_LOGIN_STATUS:
-      return state.set("loginStatus", action.data);
+      state.loginStatus = payload
+      break
     default:
       return state;
   }
-};
+})

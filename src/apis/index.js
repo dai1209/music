@@ -55,10 +55,10 @@ export const getLyricRequest = id => {
   return request(`/lyric`,{id});
 };
 
-export const loginByPhoneRequest = (phone, password) => {
+export const loginByPhoneRequest = options => {
   return request(
     `/login/cellphone`,
-    {phone,password}
+    options
   );
 };
 
@@ -66,6 +66,6 @@ export const sentVcodeRequest = phone => {
   return request(`/captcha/sent`,{phone});
 };
 
-export const loginByVcodeRequest = (phone, vcode) => {
-  return request(`/captcha/verify`,{phone,captcha:vcode});
+export const loginByVcodeRequest = options => {
+  return request(`/captcha/verify`,options);
 };
