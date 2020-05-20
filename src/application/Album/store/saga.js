@@ -1,4 +1,4 @@
-import {put,call,takeEvery} from 'redux-saga/effects'
+import {all, put,call,takeEvery} from 'redux-saga/effects'
 
 import {getAlbumDetailRequest} from '../../../apis'
 
@@ -9,15 +9,19 @@ import {GET_ALBUM_LIST} from './constants'
 
 function *fetchAlbumList({payload}){
   try{
+    yield put(changeEnterLoading(true))
     const res = yield call(getAlbumDetailRequest,payload)
-  const data = res.playlist
-  yield put(changeCurrentAlbum(data))
-  yield put(changeEnterLoading(false))
-  yield put(changeStartIndex(0))
-  yield put(changeTotalCount(data.tracks.length))
+    const data = res.playlist
+    yield all([
+      put(changeCurrentAlbum(data)),
+      put(changeStartIndex(0)),
+      put(changeTotalCount(data.tracks.length)),
+    ]) 
   }catch(e){
     console.log(e);
     
+  }finally{
+    yield put(changeEnterLoading(false))
   }
   
 }

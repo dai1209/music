@@ -18,12 +18,13 @@ function* fetchBannerList(){
 }
 function* fetchRecommendList(){
   try{
+    yield put(changeEnterLoading(true))
     const {result} = yield call(getRecommendListRequest)
-
     yield put(changeRecommendList(result))
-    yield put(changeEnterLoading(false))
   }catch(e){
     console.log(e)
+  }finally{
+    yield put(changeEnterLoading(false))
   }
   
 }

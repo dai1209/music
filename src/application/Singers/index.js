@@ -9,7 +9,7 @@ import {
   EnterLoading
 } from "./style";
 import { useDispatch, useSelector } from 'react-redux';
-import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeEnterLoading, changeListOffset, refreshMoreSingerList, changePullUpLoading,changePullDownLoading, refreshMoreHotSingerList } from './store/actions';
+import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeListOffset, refreshMoreSingerList, refreshMoreHotSingerList } from './store/actions';
 import Scroll from "../../baseUI/scroll/index";
 import  LazyLoad, {forceCheck} from 'react-lazyload';
 import Loading from '../../baseUI/loading/index';
@@ -32,19 +32,16 @@ function Singers(props){
   const updateCategory = useCallback((newVal) => {
     dispatch(changeCategory(newVal));
     dispatch(changeListOffset(0));
-    dispatch(changeEnterLoading(true));
     dispatch(getSingerList());
   },[dispatch])
 
   const updateAlpha = useCallback((newVal)=>{
     dispatch(changeAlpha(newVal));
     dispatch(changeListOffset(0));
-    dispatch(changeEnterLoading(true));
     dispatch(getSingerList());
   },[dispatch])
 
   const pullUpRefresh = useCallback((hot, count) => {
-    dispatch(changePullUpLoading(true));
     if(hot){
       dispatch(refreshMoreHotSingerList());
     } else {
@@ -53,7 +50,6 @@ function Singers(props){
   },[dispatch])
 
   const pullDownRefresh = useCallback((category, alpha) =>{
-    dispatch(changePullDownLoading(true));
     dispatch(changeListOffset(0));
     if(category === '' && alpha === ''){
       dispatch(getHotSingerList());

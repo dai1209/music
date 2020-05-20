@@ -1,19 +1,19 @@
 import * as actionTypes from './constants';
 
 
-export const changeBannerList = (data) => ({
+export const changeBannerList = payload => ({
   type: actionTypes.CHANGE_BANNER,
-  payload: data
+  payload
 });
 
-export const changeRecommendList = (data) => ({
+export const changeRecommendList = payload => ({
   type: actionTypes.CHANGE_RECOMMEND_LIST,
-  payload: data
+  payload
 });
 
-export const changeEnterLoading = (data) => ({
+export const changeEnterLoading = payload => ({
   type: actionTypes.CHANGE_ENTER_LOADING,
-  payload: data
+  payload
 });
 
 export const getBannerList = () => ({

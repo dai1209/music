@@ -12,7 +12,7 @@ import MusicNote from '../../baseUI/music-note/index';
 import { isEmptyObject } from '../../utils';
 import Scroll from '../../baseUI/scroll/index';
 import style from "../../assets/global-style";
-import {changeEnterLoading,getAlbumList,changePullUpLoading} from './store/actions'
+import {getAlbumList,changePullUpLoading} from './store/actions'
 
 
 export default memo((props)=>{
@@ -31,7 +31,6 @@ export default memo((props)=>{
   const songsCount = playList.length
  
   useEffect(()=>{
-    dispatch(changeEnterLoading(true))
     dispatch(getAlbumList(id))
   },[dispatch,id])
 

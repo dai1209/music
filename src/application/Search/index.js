@@ -111,29 +111,9 @@ const Search = (props) => {
   useEffect(() => {
     setShow(true);
     hotList.length || dispatch(getHotKeyWords())
-      // eslint-disable-next-line
+
   }, [setShow,hotList,dispatch]);
 
-  
-  
-  // const renderHistoryList = () => {
-  //   return (
-  //     <ul>
-  //       {
-  //         [1,2,3,4,5,6,7,8,9,5,5,5,5,5].map(item => {
-  //           return (
-  //             <li  className="history_item">
-  //               <span className="text">离圣诞节分厘卡士大夫将来肯定</span>
-  //               <span className="icon">
-  //                 <i className="iconfont icon_delete">&#xe600;</i>
-  //               </span>
-  //             </li>
-  //           )
-  //         })
-  //       }
-  //     </ul>
-  //   )
-  // }
   const handleQuery = (q) => {
     setQuery(q);
     if(!q) return;
@@ -171,15 +151,7 @@ const Search = (props) => {
                 <h1 className="title">热门搜索</h1>
                 <HotList hotList={hotList} setQuery={setQuery} />
               </HotKey>
-              {/* <SearchHistory>
-                <h1 className="title">
-                  <span className="text">搜索历史</span>
-                  <span className="clear">
-                    <i className="iconfont">&#xe63d;</i>
-                  </span>
-                </h1>
-                {renderHistoryList()}
-              </SearchHistory> */}
+              
             </div>
           </Scroll>
         </ShortcutWrapper>
