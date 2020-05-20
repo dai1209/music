@@ -8,31 +8,31 @@ import {
 } from './constants';
 
 
-export const changeCurrentAlbum = (data) => ({
+export const changeCurrentAlbum = payload => ({
   type: CHANGE_CURRENT_ALBUM,
-  payload: data
+  payload
 });
 
-export const changePullUpLoading = (data) => ({
+export const changePullUpLoading = payload => ({
   type: CHANGE_PULLUP_LOADING,
-  payload: data
+  payload
 });
-export const changeEnterLoading = (data) => ({
+export const changeEnterLoading = payload => ({
   type: CHANGE_ENTER_LOADING,
-  payload: data
+  payload
 });
 
-export const changeTotalCount = (data) => ({
+export const changeTotalCount = payload => ({
   type: CHANGE_TOTAL_COUNT,
-  payload: data
+  payload
 });
 
-export const changeStartIndex = (data) => ({
+export const changeStartIndex = payload => ({
   type: CHANGE_START_INDEX,
-  payload: data
+  payload
 });
 
-export const getAlbumList = (id) => ({
+export const getAlbumList = payload => ({
   type: GET_ALBUM_LIST,
-  payload:id
+  payload
 });
