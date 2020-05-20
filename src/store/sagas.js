@@ -12,7 +12,7 @@ import {saga as searchSaga} from '../application/Search/store'
 
 import {saga as singerSaga} from '../application/Singer/store' 
 
-import {saga as userSaga} from '../application/User/store' 
+import {saga as userSaga} from '../application/User/Login/store' 
 
 
 const rootSaga = [
