@@ -1,7 +1,7 @@
 import React from "react";
 import {useHistory,NavLink} from 'react-router-dom'
 import { Top, Tab, TabItem } from "./HomeLayout.style";
-import Player from "../application/Player/index";
+import Player from "../application/Player";
 
 function Home({children}) {
   
@@ -15,7 +15,7 @@ function Home({children}) {
         >
           &#xe65c;
         </span>
-        <span className="title">云音悦</span>
+        <span className="title">云音乐</span>
         <span
           className="iconfont search"
           onClick={() => history.push("/search")}
