@@ -45,7 +45,7 @@ const RankList = memo(({list, global, enterDetail}) => {
   )
 })
 
-function Rank({history,children}) {
+export default memo(({history,children}) => {
   const rankList = useSelector(({rank})=>rank.rankList)
   const loading = useSelector(({rank})=>rank.loading)
   const songsCount = useSelector(({player})=>player.songsCount)
@@ -81,6 +81,4 @@ function Rank({history,children}) {
       {children}
     </Container>
     );
-}
-
-export default memo(Rank)
+})

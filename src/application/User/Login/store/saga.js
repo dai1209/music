@@ -1,4 +1,4 @@
-import {all, put,takeEvery,call} from 'redux-saga/effects'
+import {all, put,takeLatest,call} from 'redux-saga/effects'
 
 import {
   loginByPhoneRequest,
@@ -53,7 +53,7 @@ function* fetchSentVcode({payload}){
 
 
 export default function* saga(){
-  yield takeEvery(LOGIN_BY_PHONE,fetchLoginByPhone)
-  yield takeEvery(LOGIN_BY_VCODE,fetchLoginByVcode)
-  yield takeEvery(SENT_VCODE,fetchSentVcode)
+  yield takeLatest(LOGIN_BY_PHONE,fetchLoginByPhone)
+  yield takeLatest(LOGIN_BY_VCODE,fetchLoginByVcode)
+  yield takeLatest(SENT_VCODE,fetchSentVcode)
 }

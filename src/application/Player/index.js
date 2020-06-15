@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, {memo, useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changePlayingState,

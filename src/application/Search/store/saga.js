@@ -2,7 +2,7 @@ import {
   all,
   put,
   call,
-  takeEvery
+  takeLatest
 } from 'redux-saga/effects'
 
 import {
@@ -52,6 +52,6 @@ function* fetchSuggestList({payload}){
 
 
 export default function* saga(){
-  yield takeEvery(GET_HOT_KEYWORDS,fetchHotKeyWords)
-  yield takeEvery(GET_SUGGEST_LIST,fetchSuggestList)
+  yield takeLatest(GET_HOT_KEYWORDS,fetchHotKeyWords)
+  yield takeLatest(GET_SUGGEST_LIST,fetchSuggestList)
 }

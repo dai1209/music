@@ -1,4 +1,4 @@
-import {all, put,call,takeEvery} from 'redux-saga/effects'
+import {all, put,call,takeLatest} from 'redux-saga/effects'
 
 import {getAlbumDetailRequest} from '../../../apis'
 
@@ -28,7 +28,7 @@ function *fetchAlbumList({payload}){
 
 
 function *saga(){
-  yield takeEvery(GET_ALBUM_LIST,fetchAlbumList)
+  yield takeLatest(GET_ALBUM_LIST,fetchAlbumList)
 }
 
 

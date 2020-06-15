@@ -1,4 +1,4 @@
-import {put, call, takeEvery} from 'redux-saga/effects'
+import {put, call, takeLatest} from 'redux-saga/effects'
 import { getRankListRequest } from '../../../apis';
 import {GET_RANK_LIST} from './constants'
 import {changeRankList, changeLoading} from './actions'
@@ -17,5 +17,5 @@ function* fetchRankList(){
 
 
 export default function *saga(){
-  yield takeEvery(GET_RANK_LIST,fetchRankList)
+  yield takeLatest(GET_RANK_LIST,fetchRankList)
 }

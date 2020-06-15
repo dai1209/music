@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {memo, useEffect } from 'react';
 import {forceCheck} from 'react-lazyload'
 import { useSelector, useDispatch } from "react-redux";
 import Slider from '../../components/slider/';
@@ -10,7 +10,7 @@ import Loading from '../../baseUI/loading-v2/index';
 import {getBannerList,getRecommendList} from './store/actions'
 
 
-function Recommend({children}){
+export default memo(({children})=>{
   const bannerList = useSelector(({recommend})=>recommend.bannerList)
   const recommendList = useSelector(({recommend})=>recommend.recommendList)
   const songsCount = useSelector(({player})=>player.playList)
@@ -37,6 +37,4 @@ function Recommend({children}){
       { children }
     </Content> 
   );
-}
-
-export default React.memo(Recommend)
+})

@@ -1,4 +1,4 @@
-import {all,put,call,takeEvery} from 'redux-saga/effects'
+import {all,put,call,takeLatest} from 'redux-saga/effects'
 import {GET_SINGER_INFO} from './constants'
 import {changeEnterLoading,changeArtist,changeSongs} from './actions'
 import { getSingerInfoRequest } from './../../../apis';
@@ -21,5 +21,5 @@ function* fetchSingerInfo({payload}){
 
 
 export default function* saga(){
-  yield takeEvery(GET_SINGER_INFO,fetchSingerInfo)
+  yield takeLatest(GET_SINGER_INFO,fetchSingerInfo)
 }

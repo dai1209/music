@@ -1,4 +1,4 @@
-import {put,call,takeEvery} from 'redux-saga/effects'
+import {put,call,takeLatest} from 'redux-saga/effects'
 
 import { GET_BANNER_LIST, GET_RECOMMEND_LIST}from './constants'
 
@@ -30,6 +30,6 @@ function* fetchRecommendList(){
 }
 
 export default function* saga(){
-  yield takeEvery(GET_BANNER_LIST,fetchBannerList)
-  yield takeEvery(GET_RECOMMEND_LIST,fetchRecommendList)
+  yield takeLatest(GET_BANNER_LIST,fetchBannerList)
+  yield takeLatest(GET_RECOMMEND_LIST,fetchRecommendList)
 }

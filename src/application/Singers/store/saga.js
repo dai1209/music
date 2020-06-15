@@ -1,4 +1,4 @@
-import {all, put,call, select, takeEvery} from 'redux-saga/effects'
+import {all, put,call, select, takeLatest} from 'redux-saga/effects'
 
 import {getHotSingerListRequest,getSingerListRequest} from '../../../apis'
 import {changeSingerList,changeEnterLoading,changePullDownLoading,changeListOffset,changePullUpLoading} from './actions'
@@ -102,10 +102,10 @@ function* fetchMoreSingerList(){
 
 
 function *saga(){
-  yield takeEvery(GET_HOT_SINGER_LIST,fetchHotSingerList)
-  yield takeEvery(REFRESH_MORE_HOT_SINGER_LIST,fetchMoreHotSingerList)
-  yield takeEvery(GET_SINGER_LIST,fetchSingerList)
-  yield takeEvery(REFRESH_MORE_SINGER_LIST,fetchMoreSingerList)
+  yield takeLatest(GET_HOT_SINGER_LIST,fetchHotSingerList)
+  yield takeLatest(REFRESH_MORE_HOT_SINGER_LIST,fetchMoreHotSingerList)
+  yield takeLatest(GET_SINGER_LIST,fetchSingerList)
+  yield takeLatest(REFRESH_MORE_SINGER_LIST,fetchMoreSingerList)
 }
 
 
